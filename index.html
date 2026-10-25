@@ -1,0 +1,1782 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Question Paper Repository</title>
+
+    <style>
+      /* =====================================================
+           GENERAL
+        ===================================================== */
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        background: #f5f7fb;
+        color: #1f2937;
+      }
+
+      a {
+        text-decoration: none;
+      }
+
+      button,
+      input,
+      select {
+        font-family: inherit;
+      }
+
+      /* =====================================================
+           NAVBAR
+        ===================================================== */
+
+      .navbar {
+        width: 100%;
+        background: #172554;
+        color: white;
+
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+      }
+
+      .nav-container {
+        max-width: 1200px;
+        margin: auto;
+
+        min-height: 70px;
+        padding: 0 20px;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .logo {
+        color: white;
+        font-size: 22px;
+        font-weight: bold;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 25px;
+      }
+
+      .nav-links a {
+        color: white;
+        font-size: 15px;
+        transition: 0.2s;
+      }
+
+      .nav-links a:hover {
+        color: #93c5fd;
+      }
+
+      .login-btn {
+        background: #2563eb;
+        padding: 10px 18px;
+        border-radius: 7px;
+      }
+
+      .login-btn:hover {
+        background: #1d4ed8 !important;
+        color: white !important;
+      }
+
+      /* =====================================================
+           HERO
+        ===================================================== */
+
+      .hero {
+        min-height: 500px;
+
+        background: linear-gradient(
+          rgba(23, 37, 84, 0.9),
+          rgba(37, 99, 235, 0.8)
+        );
+
+        color: white;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        text-align: center;
+
+        padding: 60px 20px;
+      }
+
+      .hero-content {
+        max-width: 850px;
+      }
+
+      .hero h1 {
+        font-size: 52px;
+        margin-bottom: 20px;
+      }
+
+      .hero p {
+        font-size: 19px;
+        line-height: 1.7;
+        margin-bottom: 30px;
+        color: #e0e7ff;
+      }
+
+      .hero-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        flex-wrap: wrap;
+      }
+
+      .hero-btn {
+        padding: 13px 24px;
+        border-radius: 8px;
+        font-weight: bold;
+        cursor: pointer;
+        border: none;
+      }
+
+      .primary-btn {
+        background: white;
+        color: #1d4ed8;
+      }
+
+      .primary-btn:hover {
+        background: #e0e7ff;
+      }
+
+      .outline-btn {
+        border: 2px solid white;
+        color: white;
+        background: transparent;
+      }
+
+      .outline-btn:hover {
+        background: white;
+        color: #1d4ed8;
+      }
+
+      /* =====================================================
+           CONTAINER
+        ===================================================== */
+
+      .container {
+        max-width: 1200px;
+        margin: auto;
+        padding: 60px 20px;
+      }
+
+      /* =====================================================
+           SECTION TITLE
+        ===================================================== */
+
+      .section-title {
+        text-align: center;
+        margin-bottom: 40px;
+      }
+
+      .section-title h2 {
+        font-size: 32px;
+        color: #172554;
+        margin-bottom: 10px;
+      }
+
+      .section-title p {
+        color: #64748b;
+      }
+
+      /* =====================================================
+           SEARCH BOX
+        ===================================================== */
+
+      .search-section {
+        margin-top: -50px;
+        position: relative;
+      }
+
+      .search-box {
+        background: white;
+        padding: 30px;
+
+        border-radius: 15px;
+
+        box-shadow: 0 10px 35px rgba(0, 0, 0, 0.1);
+      }
+
+      .search-box h2 {
+        color: #172554;
+        margin-bottom: 25px;
+      }
+
+      .search-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+
+        gap: 15px;
+      }
+
+      .form-group label {
+        display: block;
+        font-weight: bold;
+        font-size: 14px;
+        margin-bottom: 7px;
+      }
+
+      .form-group input,
+      .form-group select {
+        width: 100%;
+        padding: 12px;
+
+        border: 1px solid #d1d5db;
+        border-radius: 7px;
+
+        outline: none;
+      }
+
+      .form-group input:focus,
+      .form-group select:focus {
+        border-color: #2563eb;
+      }
+
+      .search-buttons {
+        margin-top: 20px;
+
+        display: flex;
+        gap: 10px;
+      }
+
+      .btn {
+        padding: 11px 20px;
+
+        border: none;
+        border-radius: 7px;
+
+        cursor: pointer;
+
+        font-weight: bold;
+      }
+
+      .search-btn {
+        background: #2563eb;
+        color: white;
+      }
+
+      .search-btn:hover {
+        background: #1d4ed8;
+      }
+
+      .clear-btn {
+        background: #e5e7eb;
+        color: #374151;
+      }
+
+      .clear-btn:hover {
+        background: #d1d5db;
+      }
+
+      /* =====================================================
+           STATISTICS
+        ===================================================== */
+
+      .statistics {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+
+        gap: 20px;
+        margin-bottom: 50px;
+      }
+
+      .stat {
+        background: white;
+        padding: 25px;
+
+        text-align: center;
+
+        border-radius: 12px;
+
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
+      }
+
+      .stat-icon {
+        font-size: 35px;
+        margin-bottom: 10px;
+      }
+
+      .stat h3 {
+        color: #2563eb;
+        font-size: 30px;
+        margin-bottom: 5px;
+      }
+
+      .stat p {
+        color: #64748b;
+      }
+
+      /* =====================================================
+           QUESTION PAPERS
+        ===================================================== */
+
+      .papers-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        margin-bottom: 25px;
+      }
+
+      .papers-header h2 {
+        color: #172554;
+      }
+
+      #resultCount {
+        color: #64748b;
+      }
+
+      .papers-grid {
+        display: grid;
+
+        grid-template-columns: repeat(3, 1fr);
+
+        gap: 25px;
+      }
+
+      .paper-card {
+        background: white;
+
+        padding: 25px;
+
+        border-radius: 12px;
+
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
+
+        transition: 0.3s;
+      }
+
+      .paper-card:hover {
+        transform: translateY(-5px);
+
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+      }
+
+      .pdf-icon {
+        width: 55px;
+        height: 55px;
+
+        background: #fee2e2;
+        color: #dc2626;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        border-radius: 10px;
+
+        font-weight: bold;
+
+        margin-bottom: 15px;
+      }
+
+      .paper-card h3 {
+        color: #172554;
+        margin-bottom: 15px;
+        font-size: 20px;
+      }
+
+      .paper-info {
+        margin-bottom: 5px;
+        color: #64748b;
+        font-size: 14px;
+      }
+
+      .paper-info strong {
+        color: #374151;
+      }
+
+      .card-buttons {
+        display: flex;
+        gap: 10px;
+        margin-top: 20px;
+      }
+
+      .view-btn {
+        flex: 1;
+        background: #2563eb;
+        color: white;
+      }
+
+      .download-btn {
+        flex: 1;
+        background: #e0e7ff;
+        color: #1d4ed8;
+      }
+
+      .view-btn:hover {
+        background: #1d4ed8;
+      }
+
+      .download-btn:hover {
+        background: #c7d2fe;
+      }
+
+      /* =====================================================
+           NO RESULTS
+        ===================================================== */
+
+      .no-results {
+        display: none;
+
+        text-align: center;
+
+        background: white;
+
+        padding: 50px;
+
+        border-radius: 12px;
+      }
+
+      .no-results h3 {
+        margin-bottom: 10px;
+        color: #172554;
+      }
+
+      .no-results p {
+        color: #64748b;
+      }
+
+      /* =====================================================
+           ABOUT
+        ===================================================== */
+
+      .about-section {
+        background: white;
+      }
+
+      .about-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 50px;
+
+        align-items: center;
+      }
+
+      .about-text h2 {
+        color: #172554;
+        font-size: 32px;
+        margin-bottom: 20px;
+      }
+
+      .about-text p {
+        color: #64748b;
+        line-height: 1.8;
+        margin-bottom: 15px;
+      }
+
+      .features {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+      }
+
+      .feature {
+        background: #f8fafc;
+        padding: 20px;
+        border-radius: 10px;
+      }
+
+      .feature h3 {
+        color: #172554;
+        margin-bottom: 5px;
+      }
+
+      .feature p {
+        color: #64748b;
+        font-size: 14px;
+      }
+
+      /* =====================================================
+           ADMIN SECTION
+        ===================================================== */
+
+      .admin-section {
+        background: #f1f5f9;
+      }
+
+      .admin-box {
+        background: white;
+        padding: 35px;
+
+        border-radius: 15px;
+
+        max-width: 800px;
+        margin: auto;
+
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
+      }
+
+      .admin-box h2 {
+        color: #172554;
+        margin-bottom: 10px;
+      }
+
+      .admin-box > p {
+        color: #64748b;
+        margin-bottom: 25px;
+      }
+
+      .upload-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+
+      .upload-group {
+        margin-bottom: 5px;
+      }
+
+      .upload-group label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 7px;
+      }
+
+      .upload-group input,
+      .upload-group select {
+        width: 100%;
+        padding: 12px;
+
+        border: 1px solid #d1d5db;
+        border-radius: 7px;
+      }
+
+      .upload-full {
+        grid-column: 1 / -1;
+      }
+
+      .upload-submit {
+        background: #16a34a;
+        color: white;
+      }
+
+      .upload-submit:hover {
+        background: #15803d;
+      }
+
+      /* =====================================================
+           MODAL
+        ===================================================== */
+
+      .modal {
+        display: none;
+
+        position: fixed;
+
+        top: 0;
+        left: 0;
+
+        width: 100%;
+        height: 100%;
+
+        background: rgba(0, 0, 0, 0.6);
+
+        z-index: 2000;
+
+        align-items: center;
+        justify-content: center;
+
+        padding: 20px;
+      }
+
+      .modal-content {
+        background: white;
+
+        width: 400px;
+        max-width: 100%;
+
+        padding: 30px;
+
+        border-radius: 15px;
+
+        position: relative;
+      }
+
+      .modal-content h2 {
+        color: #172554;
+        margin-bottom: 10px;
+      }
+
+      .modal-content p {
+        color: #64748b;
+        margin-bottom: 20px;
+      }
+
+      .close {
+        position: absolute;
+
+        top: 15px;
+        right: 20px;
+
+        font-size: 28px;
+
+        cursor: pointer;
+
+        color: #64748b;
+      }
+
+      .login-field {
+        margin-bottom: 15px;
+      }
+
+      .login-field label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 6px;
+      }
+
+      .login-field input {
+        width: 100%;
+        padding: 12px;
+
+        border: 1px solid #d1d5db;
+        border-radius: 7px;
+      }
+
+      .login-submit {
+        width: 100%;
+        background: #2563eb;
+        color: white;
+        margin-top: 5px;
+      }
+
+      /* =====================================================
+           FOOTER
+        ===================================================== */
+
+      footer {
+        background: #172554;
+        color: white;
+
+        text-align: center;
+
+        padding: 30px 20px;
+      }
+
+      footer p {
+        color: #cbd5e1;
+      }
+
+      /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+      @media (max-width: 900px) {
+        .search-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        .statistics {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        .papers-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        .about-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .nav-container {
+          flex-direction: column;
+          padding: 15px;
+          gap: 15px;
+        }
+
+        .nav-links {
+          gap: 12px;
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+
+        .hero h1 {
+          font-size: 35px;
+        }
+
+        .hero p {
+          font-size: 16px;
+        }
+
+        .search-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .statistics {
+          grid-template-columns: 1fr;
+        }
+
+        .papers-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .upload-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .upload-full {
+          grid-column: auto;
+        }
+
+        .features {
+          grid-template-columns: 1fr;
+        }
+
+        .papers-header {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 5px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- ======================================================
+     NAVBAR
+======================================================= -->
+
+    <header class="navbar">
+      <div class="nav-container">
+        <a href="#home" class="logo"> 📚 QP Repository </a>
+
+        <nav class="nav-links">
+          <a href="#home"> Home </a>
+
+          <a href="#papers"> Question Papers </a>
+
+          <a href="#about"> About </a>
+
+          <a href="#admin"> Admin </a>
+
+          <a
+            href="#"
+            class="login-btn"
+            onclick="
+              openLogin();
+              return false;
+            "
+          >
+            Admin Login
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- ======================================================
+     HERO
+======================================================= -->
+
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <h1>Question Paper Repository</h1>
+
+        <p>
+          A simple and organized platform for students to find previous
+          examination question papers by department, semester, subject and year.
+        </p>
+
+        <div class="hero-buttons">
+          <button
+            class="hero-btn primary-btn"
+            onclick="document.getElementById('papers').scrollIntoView()"
+          >
+            Browse Question Papers
+          </button>
+
+          <button
+            class="hero-btn outline-btn"
+            onclick="document.getElementById('about').scrollIntoView()"
+          >
+            Learn More
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================
+     SEARCH
+======================================================= -->
+
+    <section class="search-section">
+      <div class="container">
+        <div class="search-box">
+          <h2>🔎 Search Question Papers</h2>
+
+          <div class="search-grid">
+            <!-- Department -->
+
+            <div class="form-group">
+              <label> Department </label>
+
+              <select id="departmentFilter">
+                <option value="">All Departments</option>
+
+                <option value="CSE">CSE</option>
+
+                <option value="ECE">ECE</option>
+
+                <option value="EEE">EEE</option>
+
+                <option value="IT">Information Technology</option>
+
+                <option value="MECH">Mechanical</option>
+
+                <option value="CIVIL">Civil</option>
+              </select>
+            </div>
+
+            <!-- Semester -->
+
+            <div class="form-group">
+              <label> Semester </label>
+
+              <select id="semesterFilter">
+                <option value="">All Semesters</option>
+
+                <option value="1">Semester 1</option>
+
+                <option value="2">Semester 2</option>
+
+                <option value="3">Semester 3</option>
+
+                <option value="4">Semester 4</option>
+
+                <option value="5">Semester 5</option>
+
+                <option value="6">Semester 6</option>
+
+                <option value="7">Semester 7</option>
+
+                <option value="8">Semester 8</option>
+              </select>
+            </div>
+
+            <!-- Subject -->
+
+            <div class="form-group">
+              <label> Subject </label>
+
+              <input
+                type="text"
+                id="subjectFilter"
+                placeholder="Enter subject"
+              />
+            </div>
+
+            <!-- Year -->
+
+            <div class="form-group">
+              <label> Year </label>
+
+              <select id="yearFilter">
+                <option value="">All Years</option>
+
+                <option value="2026">2026</option>
+
+                <option value="2025">2025</option>
+
+                <option value="2024">2024</option>
+
+                <option value="2023">2023</option>
+
+                <option value="2022">2022</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="search-buttons">
+            <button class="btn search-btn" onclick="searchPapers()">
+              Search
+            </button>
+
+            <button class="btn clear-btn" onclick="clearSearch()">Clear</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================
+     STATISTICS
+======================================================= -->
+
+    <section>
+      <div class="container">
+        <div class="statistics">
+          <div class="stat">
+            <div class="stat-icon">📄</div>
+
+            <h3 id="totalPapers">6</h3>
+
+            <p>Question Papers</p>
+          </div>
+
+          <div class="stat">
+            <div class="stat-icon">🎓</div>
+
+            <h3>6</h3>
+
+            <p>Departments</p>
+          </div>
+
+          <div class="stat">
+            <div class="stat-icon">📚</div>
+
+            <h3>8</h3>
+
+            <p>Semesters</p>
+          </div>
+
+          <div class="stat">
+            <div class="stat-icon">📅</div>
+
+            <h3>5</h3>
+
+            <p>Academic Years</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================
+     QUESTION PAPERS
+======================================================= -->
+
+    <section id="papers">
+      <div class="container">
+        <div class="papers-header">
+          <h2>Available Question Papers</h2>
+
+          <span id="resultCount"> Showing 6 papers </span>
+        </div>
+
+        <div class="papers-grid" id="papersGrid">
+          <!-- PAPER 1 -->
+
+          <div
+            class="paper-card"
+            data-department="CSE"
+            data-semester="5"
+            data-subject="Data Structures"
+            data-year="2025"
+          >
+            <div class="pdf-icon">PDF</div>
+
+            <h3>Data Structures</h3>
+
+            <p class="paper-info">
+              <strong>Department:</strong>
+              CSE
+            </p>
+
+            <p class="paper-info">
+              <strong>Semester:</strong>
+              5
+            </p>
+
+            <p class="paper-info">
+              <strong>Year:</strong>
+              2025
+            </p>
+
+            <p class="paper-info">
+              <strong>Exam:</strong>
+              University Examination
+            </p>
+
+            <p class="paper-info">
+              <strong>Regulation:</strong>
+              2021
+            </p>
+
+            <div class="card-buttons">
+              <button
+                class="btn view-btn"
+                onclick="viewPaper('Data Structures')"
+              >
+                View
+              </button>
+
+              <button
+                class="btn download-btn"
+                onclick="downloadPaper('Data Structures')"
+              >
+                Download
+              </button>
+            </div>
+          </div>
+
+          <!-- PAPER 2 -->
+
+          <div
+            class="paper-card"
+            data-department="CSE"
+            data-semester="5"
+            data-subject="Operating Systems"
+            data-year="2025"
+          >
+            <div class="pdf-icon">PDF</div>
+
+            <h3>Operating Systems</h3>
+
+            <p class="paper-info">
+              <strong>Department:</strong>
+              CSE
+            </p>
+
+            <p class="paper-info">
+              <strong>Semester:</strong>
+              5
+            </p>
+
+            <p class="paper-info">
+              <strong>Year:</strong>
+              2025
+            </p>
+
+            <p class="paper-info">
+              <strong>Exam:</strong>
+              University Examination
+            </p>
+
+            <p class="paper-info">
+              <strong>Regulation:</strong>
+              2021
+            </p>
+
+            <div class="card-buttons">
+              <button
+                class="btn view-btn"
+                onclick="viewPaper('Operating Systems')"
+              >
+                View
+              </button>
+
+              <button
+                class="btn download-btn"
+                onclick="downloadPaper('Operating Systems')"
+              >
+                Download
+              </button>
+            </div>
+          </div>
+
+          <!-- PAPER 3 -->
+
+          <div
+            class="paper-card"
+            data-department="ECE"
+            data-semester="4"
+            data-subject="Digital Electronics"
+            data-year="2024"
+          >
+            <div class="pdf-icon">PDF</div>
+
+            <h3>Digital Electronics</h3>
+
+            <p class="paper-info">
+              <strong>Department:</strong>
+              ECE
+            </p>
+
+            <p class="paper-info">
+              <strong>Semester:</strong>
+              4
+            </p>
+
+            <p class="paper-info">
+              <strong>Year:</strong>
+              2024
+            </p>
+
+            <p class="paper-info">
+              <strong>Exam:</strong>
+              University Examination
+            </p>
+
+            <p class="paper-info">
+              <strong>Regulation:</strong>
+              2021
+            </p>
+
+            <div class="card-buttons">
+              <button
+                class="btn view-btn"
+                onclick="viewPaper('Digital Electronics')"
+              >
+                View
+              </button>
+
+              <button
+                class="btn download-btn"
+                onclick="downloadPaper('Digital Electronics')"
+              >
+                Download
+              </button>
+            </div>
+          </div>
+
+          <!-- PAPER 4 -->
+
+          <div
+            class="paper-card"
+            data-department="IT"
+            data-semester="3"
+            data-subject="Database Management Systems"
+            data-year="2025"
+          >
+            <div class="pdf-icon">PDF</div>
+
+            <h3>Database Management Systems</h3>
+
+            <p class="paper-info">
+              <strong>Department:</strong>
+              IT
+            </p>
+
+            <p class="paper-info">
+              <strong>Semester:</strong>
+              3
+            </p>
+
+            <p class="paper-info">
+              <strong>Year:</strong>
+              2025
+            </p>
+
+            <p class="paper-info">
+              <strong>Exam:</strong>
+              Model Examination
+            </p>
+
+            <p class="paper-info">
+              <strong>Regulation:</strong>
+              2021
+            </p>
+
+            <div class="card-buttons">
+              <button
+                class="btn view-btn"
+                onclick="viewPaper('Database Management Systems')"
+              >
+                View
+              </button>
+
+              <button
+                class="btn download-btn"
+                onclick="downloadPaper('Database Management Systems')"
+              >
+                Download
+              </button>
+            </div>
+          </div>
+
+          <!-- PAPER 5 -->
+
+          <div
+            class="paper-card"
+            data-department="EEE"
+            data-semester="6"
+            data-subject="Power Systems"
+            data-year="2023"
+          >
+            <div class="pdf-icon">PDF</div>
+
+            <h3>Power Systems</h3>
+
+            <p class="paper-info">
+              <strong>Department:</strong>
+              EEE
+            </p>
+
+            <p class="paper-info">
+              <strong>Semester:</strong>
+              6
+            </p>
+
+            <p class="paper-info">
+              <strong>Year:</strong>
+              2023
+            </p>
+
+            <p class="paper-info">
+              <strong>Exam:</strong>
+              University Examination
+            </p>
+
+            <p class="paper-info">
+              <strong>Regulation:</strong>
+              2017
+            </p>
+
+            <div class="card-buttons">
+              <button class="btn view-btn" onclick="viewPaper('Power Systems')">
+                View
+              </button>
+
+              <button
+                class="btn download-btn"
+                onclick="downloadPaper('Power Systems')"
+              >
+                Download
+              </button>
+            </div>
+          </div>
+
+          <!-- PAPER 6 -->
+
+          <div
+            class="paper-card"
+            data-department="MECH"
+            data-semester="4"
+            data-subject="Thermodynamics"
+            data-year="2024"
+          >
+            <div class="pdf-icon">PDF</div>
+
+            <h3>Thermodynamics</h3>
+
+            <p class="paper-info">
+              <strong>Department:</strong>
+              MECH
+            </p>
+
+            <p class="paper-info">
+              <strong>Semester:</strong>
+              4
+            </p>
+
+            <p class="paper-info">
+              <strong>Year:</strong>
+              2024
+            </p>
+
+            <p class="paper-info">
+              <strong>Exam:</strong>
+              University Examination
+            </p>
+
+            <p class="paper-info">
+              <strong>Regulation:</strong>
+              2021
+            </p>
+
+            <div class="card-buttons">
+              <button
+                class="btn view-btn"
+                onclick="viewPaper('Thermodynamics')"
+              >
+                View
+              </button>
+
+              <button
+                class="btn download-btn"
+                onclick="downloadPaper('Thermodynamics')"
+              >
+                Download
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="no-results" id="noResults">
+          <h3>No Question Papers Found</h3>
+
+          <p>Try changing your search filters.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================
+     ABOUT
+======================================================= -->
+
+    <section class="about-section" id="about">
+      <div class="container">
+        <div class="about-grid">
+          <div class="about-text">
+            <h2>About the Repository</h2>
+
+            <p>
+              The Question Paper Repository is a centralized platform designed
+              to help students access previous examination question papers
+              easily.
+            </p>
+
+            <p>
+              Students can search question papers based on department, semester,
+              subject and academic year.
+            </p>
+
+            <p>
+              This helps students prepare for examinations, understand question
+              patterns and revise important topics.
+            </p>
+          </div>
+
+          <div class="features">
+            <div class="feature">
+              <h3>🔎 Easy Search</h3>
+
+              <p>Quickly find papers using filters.</p>
+            </div>
+
+            <div class="feature">
+              <h3>📚 Organized</h3>
+
+              <p>Papers are organized by subjects and years.</p>
+            </div>
+
+            <div class="feature">
+              <h3>📄 PDF Support</h3>
+
+              <p>Store and access examination papers.</p>
+            </div>
+
+            <div class="feature">
+              <h3>📱 Responsive</h3>
+
+              <p>Works on computers, tablets and phones.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================
+     ADMIN
+======================================================= -->
+
+    <section class="admin-section" id="admin">
+      <div class="container">
+        <div class="section-title">
+          <h2>Admin Panel</h2>
+
+          <p>Add new question papers to the repository.</p>
+        </div>
+
+        <div class="admin-box">
+          <h2>📤 Upload Question Paper</h2>
+
+          <p>Fill in the details below to add a question paper.</p>
+
+          <form id="uploadForm" onsubmit="uploadPaper(event)">
+            <div class="upload-grid">
+              <div class="upload-group">
+                <label> Department </label>
+
+                <select id="uploadDepartment" required>
+                  <option value="">Select Department</option>
+
+                  <option value="CSE">CSE</option>
+
+                  <option value="ECE">ECE</option>
+
+                  <option value="EEE">EEE</option>
+
+                  <option value="IT">IT</option>
+
+                  <option value="MECH">Mechanical</option>
+
+                  <option value="CIVIL">Civil</option>
+                </select>
+              </div>
+
+              <div class="upload-group">
+                <label> Semester </label>
+
+                <select id="uploadSemester" required>
+                  <option value="">Select Semester</option>
+
+                  <option value="1">Semester 1</option>
+
+                  <option value="2">Semester 2</option>
+
+                  <option value="3">Semester 3</option>
+
+                  <option value="4">Semester 4</option>
+
+                  <option value="5">Semester 5</option>
+
+                  <option value="6">Semester 6</option>
+
+                  <option value="7">Semester 7</option>
+
+                  <option value="8">Semester 8</option>
+                </select>
+              </div>
+
+              <div class="upload-group">
+                <label> Subject </label>
+
+                <input
+                  type="text"
+                  id="uploadSubject"
+                  placeholder="Example: Computer Networks"
+                  required
+                />
+              </div>
+
+              <div class="upload-group">
+                <label> Year </label>
+
+                <input
+                  type="number"
+                  id="uploadYear"
+                  placeholder="Example: 2026"
+                  min="2000"
+                  max="2100"
+                  required
+                />
+              </div>
+
+              <div class="upload-group">
+                <label> Exam Type </label>
+
+                <select id="uploadExam" required>
+                  <option value="">Select Exam Type</option>
+
+                  <option>Internal Assessment</option>
+
+                  <option>Model Examination</option>
+
+                  <option>University Examination</option>
+
+                  <option>Supplementary Examination</option>
+                </select>
+              </div>
+
+              <div class="upload-group">
+                <label> Regulation </label>
+
+                <input
+                  type="text"
+                  id="uploadRegulation"
+                  placeholder="Example: 2021"
+                />
+              </div>
+
+              <div class="upload-group upload-full">
+                <label> Question Paper PDF </label>
+
+                <input type="file" id="uploadFile" accept=".pdf" required />
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              class="btn upload-submit"
+              style="margin-top: 20px"
+            >
+              Upload Question Paper
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================
+     LOGIN MODAL
+======================================================= -->
+
+    <div class="modal" id="loginModal">
+      <div class="modal-content">
+        <span class="close" onclick="closeLogin()"> &times; </span>
+
+        <h2>🔐 Admin Login</h2>
+
+        <p>Login to manage the repository.</p>
+
+        <form onsubmit="login(event)">
+          <div class="login-field">
+            <label> Username </label>
+
+            <input type="text" id="username" required />
+          </div>
+
+          <div class="login-field">
+            <label> Password </label>
+
+            <input type="password" id="password" required />
+          </div>
+
+          <button class="btn login-submit" type="submit">Login</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- ======================================================
+     FOOTER
+======================================================= -->
+
+    <footer>
+      <h3>📚 Question Paper Repository</h3>
+
+      <br />
+
+      <p>A simple platform for accessing previous examination papers.</p>
+
+      <br />
+
+      <p>© 2026 Question Paper Repository</p>
+    </footer>
+
+    <!-- ======================================================
+     JAVASCRIPT
+======================================================= -->
+
+    <script>
+      /* =====================================================
+       SEARCH
+    ===================================================== */
+
+      function searchPapers() {
+        const department = document
+          .getElementById("departmentFilter")
+          .value.toLowerCase();
+
+        const semester = document
+          .getElementById("semesterFilter")
+          .value.toLowerCase();
+
+        const subject = document
+          .getElementById("subjectFilter")
+          .value.toLowerCase();
+
+        const year = document.getElementById("yearFilter").value.toLowerCase();
+
+        const cards = document.querySelectorAll(".paper-card");
+
+        let count = 0;
+
+        cards.forEach(function (card) {
+          const cardDepartment = card.dataset.department.toLowerCase();
+
+          const cardSemester = card.dataset.semester.toLowerCase();
+
+          const cardSubject = card.dataset.subject.toLowerCase();
+
+          const cardYear = card.dataset.year.toLowerCase();
+
+          const departmentMatch =
+            department === "" || cardDepartment === department;
+
+          const semesterMatch = semester === "" || cardSemester === semester;
+
+          const subjectMatch = subject === "" || cardSubject.includes(subject);
+
+          const yearMatch = year === "" || cardYear === year;
+
+          if (departmentMatch && semesterMatch && subjectMatch && yearMatch) {
+            card.style.display = "block";
+
+            count++;
+          } else {
+            card.style.display = "none";
+          }
+        });
+
+        document.getElementById("resultCount").textContent =
+          "Showing " + count + " paper(s)";
+
+        const noResults = document.getElementById("noResults");
+
+        if (count === 0) {
+          noResults.style.display = "block";
+        } else {
+          noResults.style.display = "none";
+        }
+      }
+
+      /* =====================================================
+       CLEAR SEARCH
+    ===================================================== */
+
+      function clearSearch() {
+        document.getElementById("departmentFilter").value = "";
+
+        document.getElementById("semesterFilter").value = "";
+
+        document.getElementById("subjectFilter").value = "";
+
+        document.getElementById("yearFilter").value = "";
+
+        searchPapers();
+      }
+
+      /* =====================================================
+       VIEW PAPER
+    ===================================================== */
+
+      function viewPaper(subject) {
+        alert(
+          "Opening question paper: " +
+            subject +
+            "\n\n" +
+            "In the full version, this button will open the uploaded PDF.",
+        );
+      }
+
+      /* =====================================================
+       DOWNLOAD PAPER
+    ===================================================== */
+
+      function downloadPaper(subject) {
+        alert(
+          "Downloading question paper: " +
+            subject +
+            "\n\n" +
+            "Connect this button to your PDF file or backend.",
+        );
+      }
+
+      /* =====================================================
+       LOGIN MODAL
+    ===================================================== */
+
+      function openLogin() {
+        document.getElementById("loginModal").style.display = "flex";
+      }
+
+      function closeLogin() {
+        document.getElementById("loginModal").style.display = "none";
+      }
+
+      /* Close modal when clicking outside */
+
+      window.onclick = function (event) {
+        const modal = document.getElementById("loginModal");
+
+        if (event.target === modal) {
+          closeLogin();
+        }
+      };
+
+      /* =====================================================
+       ADMIN LOGIN
+    ===================================================== */
+
+      function login(event) {
+        event.preventDefault();
+
+        const username = document.getElementById("username").value;
+
+        const password = document.getElementById("password").value;
+
+        /*
+            Demo credentials
+        */
+
+        if (username === "admin" && password === "admin123") {
+          alert("Login successful!");
+
+          closeLogin();
+
+          document.getElementById("admin").scrollIntoView();
+        } else {
+          alert("Invalid username or password.");
+        }
+      }
+
+      /* =====================================================
+       UPLOAD DEMO
+    ===================================================== */
+
+      function uploadPaper(event) {
+        event.preventDefault();
+
+        const file = document.getElementById("uploadFile").files[0];
+
+        if (!file) {
+          alert("Please select a PDF file.");
+
+          return;
+        }
+
+        /*
+            Check PDF
+        */
+
+        if (
+          file.type !== "application/pdf" &&
+          !file.name.toLowerCase().endsWith(".pdf")
+        ) {
+          alert("Please select a PDF file.");
+
+          return;
+        }
+
+        /*
+            Check file size
+            Maximum 20 MB
+        */
+
+        if (file.size > 20 * 1024 * 1024) {
+          alert("File size must be less than 20 MB.");
+
+          return;
+        }
+
+        const department = document.getElementById("uploadDepartment").value;
+
+        const semester = document.getElementById("uploadSemester").value;
+
+        const subject = document.getElementById("uploadSubject").value;
+
+        const year = document.getElementById("uploadYear").value;
+
+        alert(
+          "Question paper selected successfully!\n\n" +
+            "Subject: " +
+            subject +
+            "\nDepartment: " +
+            department +
+            "\nSemester: " +
+            semester +
+            "\nYear: " +
+            year +
+            "\nFile: " +
+            file.name +
+            "\n\nThis HTML-only version cannot permanently " +
+            "store the uploaded PDF.",
+        );
+
+        document.getElementById("uploadForm").reset();
+      }
+
+      /* =====================================================
+       INITIAL SEARCH
+    ===================================================== */
+
+      document.addEventListener("DOMContentLoaded", function () {
+        searchPapers();
+      });
+    </script>
+  </body>
+</html>
